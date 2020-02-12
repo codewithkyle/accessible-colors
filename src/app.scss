@@ -18,5 +18,50 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 2rem;
+
+        .new-color-button{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column wrap;
+            width: 128px;
+            height: 128px;
+            border-radius: 0.25rem;
+            border: 2px dashed var(--grey-300);
+            cursor: pointer;
+            position: relative;
+            transform-origin: center;
+            transform: none;
+            transition: all 150ms var(--ease), transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            &:active{
+                transform: scale(0.87);
+            }
+
+            &:hover,
+            &:focus{
+                border-color: var(--primary-500);
+                
+                svg,
+                span{
+                    color: var(--primary-700);
+                }
+            }
+
+            svg{
+                color: var(--grey-700);
+                width: 24px;
+                height: 24px;
+                margin-bottom: 0.5rem;
+                transition: all 75ms var(--ease);
+            }
+
+            span{
+                color: var(--grey-700);
+                display: block;
+                transition: all 75ms var(--ease);
+                font-weight: var(--font-medium);
+            }
+        }
     }
 }
