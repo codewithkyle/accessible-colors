@@ -1,0 +1,22 @@
+.app-shell{
+    width: 100%;
+    max-width: 1024px;
+    display: block;
+    margin: 0 auto;
+
+    .colors{
+        width: 100%;
+        display: block;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        background-color: var(--white);
+        border-radius: 0.5rem;
+    }
+
+    .button-wrapper{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+}
