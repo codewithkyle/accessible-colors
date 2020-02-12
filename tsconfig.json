@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "target": "ES5",
+        "module": "ESNext",
+        "lib": ["DOM", "ES2019"],
+        "moduleResolution": "Node",
+        "jsx": "react",
+        "jsxFactory": "h",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}
