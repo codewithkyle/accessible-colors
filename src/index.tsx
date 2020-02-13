@@ -77,7 +77,7 @@ class Application extends Component<{}, AppState> {
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-4xl text-grey-700 mr-4">Color Palette</h1>
                     <div>
-                        <button kind="solid" icon="left" className="mr-4" onClick={this.importClick}>
+                        <button type="default" kind="solid" icon="left" className="mr-4" onClick={this.importClick}>
                             <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                 <path
                                     fill="currentColor"
@@ -86,7 +86,7 @@ class Application extends Component<{}, AppState> {
                             </svg>
                             Import
                         </button>
-                        <button kind="solid" icon="left" onClick={this.exportClick}>
+                        <button type="default" kind="solid" icon="left" onClick={this.exportClick}>
                             <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                 <path
                                     fill="currentColor"

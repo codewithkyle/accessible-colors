@@ -1,13 +1,15 @@
 button{
-    height: 36px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 0.875rem;
-    font-weight: var(--font-medium);
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.125rem;
+    &[type="default"]{
+        height: 36px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.875rem;
+        font-weight: var(--font-medium);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.125rem;
+    }
 
     &[kind="solid"]{
         background-color: var(--primary-700);
@@ -37,6 +39,15 @@ button{
 
         svg{
             margin-right: 0.5rem;
+            width: 16px;
+            height: 18px;
+        }
+    }
+    &[icon="right"]{
+        padding-right: 0.875rem;
+
+        svg{
+            margin-left: 0.5rem;
             width: 16px;
             height: 18px;
         }
