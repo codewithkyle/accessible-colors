@@ -16,16 +16,16 @@
     .button-wrapper{
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 1rem;
 
         .new-color-button{
             display: inline-flex;
             justify-content: center;
             align-items: center;
             flex-flow: column wrap;
-            width: 128px;
-            height: 128px;
+            width: 96px;
+            height: 96px;
             border-radius: 0.25rem;
             border: 2px dashed var(--grey-300);
             cursor: pointer;
@@ -61,7 +61,23 @@
                 display: block;
                 transition: all 75ms var(--ease);
                 font-weight: var(--font-medium);
+                font-size: 0.875rem;
             }
+        }
+    }
+
+    .export-button{
+        width: 48px;
+        height: 48px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+
+        svg{
+            color: var(--neutral-500);
+            transition: all 75ms var(--ease);
         }
     }
 }

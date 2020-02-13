@@ -3,7 +3,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                grey: {
+                neutral: {
                     '100': '#f5f5f5',
                     '200': '#eeeeee',
                     '300': '#e0e0e0',
@@ -18,6 +18,7 @@ module.exports = {
                 success: colors.green,
                 warning: colors.yellow,
                 danger: colors.red,
+                grey: colors.gray,
             },
         },
     },

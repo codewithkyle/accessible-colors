@@ -1,21 +1,27 @@
 .color-button{
     display: inline-block;
-    width: 128px;
-    height: 128px;
+    width: 96px;
+    height: 96px;
     border-radius: 0.25rem;
     box-shadow: var(--shadow-inner);
     cursor: pointer;
     position: relative;
     transform: none;
     transform-origin: center;
-    transition: all 150ms var(--ease), transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: border-radius 150ms var(--ease), transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     &.is-active{
         border-radius: 50%;
+
+        span{
+            opacity: 1;
+        }
     }
 
     &:hover,
     &:focus{
+        transform: scale(1.1);
+
         span{
             opacity: 1;
         }
@@ -31,6 +37,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         opacity: 0;
+        padding: 0 0.5rem;
         transition: all 150ms var(--ease);
     }
 }
