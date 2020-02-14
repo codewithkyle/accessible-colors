@@ -47,7 +47,10 @@ class Application extends Component<{}, AppState> {
     );
 
     private newColorClick: EventListener = () => {
-        openModal();
+        openModal().then((newColor: Color) => {
+            console.log(newColor.label);
+            console.log(newColor.shades);
+        });
     };
 
     private exportClick: EventListener = () => {
