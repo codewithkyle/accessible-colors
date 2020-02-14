@@ -4,6 +4,8 @@ import './base.css';
 import './app.scss';
 import './buttons.scss';
 import { ColorButton } from './color-button/color-button';
+import { openModal } from './new-color';
+import './new-color-modal.scss';
 
 type AppState = {
     colors: Array<Color>;
@@ -45,7 +47,7 @@ class Application extends Component<{}, AppState> {
     );
 
     private newColorClick: EventListener = () => {
-        // TODO: Open new color modal
+        openModal();
     };
 
     private exportClick: EventListener = () => {

@@ -8,6 +8,8 @@ button{
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        min-width: 76px;
+        text-transform: uppercase;
         border-radius: 0.125rem;
     }
 
