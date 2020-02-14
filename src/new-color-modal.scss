@@ -23,11 +23,13 @@ new-color-modal{
     modal-component{
         z-index: 2;
         border-radius: 0.25rem;
-        padding: 1rem;
+        padding: 1.5rem 2rem;
         min-width: 300px;
         box-shadow: var(--shadow-lg);
         position: relative;
         background-color: var(--white);
+        max-height: 90vh;
+        overflow-y: auto;
 
         button{
             cursor: pointer;
@@ -82,9 +84,19 @@ new-color-modal{
         }
 
         h2{
+            font-size: var(--text-lg);
             font-weight: var(--font-medium);
             display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        p{
+            display: block;
+            width: 100%;
             margin-bottom: 1rem;
+            font-size: var(--text-sm);
+            line-height: 1.25;
+            color: var(--neutral-700);
         }
 
         color-label-wrapper{

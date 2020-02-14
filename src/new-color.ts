@@ -27,6 +27,10 @@ export function openModal() {
         heading.innerHTML = 'New Color';
         modal.appendChild(heading);
 
+        const desc = document.createElement('p');
+        desc.innerHTML = 'Add a new color by providing a unique name along with 9 shades. Shading should range from lightest to darkest.';
+        modal.appendChild(desc);
+
         const colorLabelWrapper = document.createElement('color-label-wrapper');
         const colorLabelInput = document.createElement('input');
         const colorLabelInputLable = document.createElement('label');
@@ -64,19 +68,27 @@ export function openModal() {
                 label: colorLabelInput.value.toLowerCase().trim(),
                 shades: [],
             };
+            let fail = false;
             inputsWrapper.querySelectorAll('input').forEach(input => {
                 if (input.value) {
+                    input.classList.remove('is-invalid');
                     if (input.value.match(/^(\#)/g)) {
                         newColor.shades.push(input.value.toUpperCase().trim());
                     } else {
                         newColor.shades.push(`#${input.value.toUpperCase().trim()}`);
                     }
                 } else {
-                    newColor.shades.push('#000000');
+                    fail = true;
+                    input.classList.add('is-invalid');
                 }
             });
             if (!newColor.label) {
                 colorLabelInput.classList.add('is-invalid');
+                fail = true;
+            } else {
+                colorLabelInput.classList.remove('is-invalid');
+            }
+            if (fail) {
                 return;
             }
             app.style.filter = 'blur(0)';
