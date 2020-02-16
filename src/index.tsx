@@ -116,54 +116,40 @@ class Application extends Component<{}, AppState> {
                 <span>Add Color</span>
             </button>
         );
-
         let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
-        const activeShade = (
-            <div className="active-shade">
-                <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
-                <div className="shades-wrapper">{shades}</div>
-            </div>
-        );
-
-        const colorButtons = (
-            <div className="colors">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-4xl text-grey-700 mr-4">Color Palette</h1>
-                    <div>
-                        <button type="default" kind="text" icon="left" className="mr-4" onClick={this.resetColors}>
-                            <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path
-                                    fill="currentColor"
-                                    d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"
-                                ></path>
-                            </svg>
-                            Reset
-                        </button>
-                        <button type="default" kind="solid" icon="left" className="mr-4" onClick={this.importClick}>
-                            <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path
-                                    fill="currentColor"
-                                    d="M16 288c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h112v-64zm489-183L407.1 7c-4.5-4.5-10.6-7-17-7H384v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H152c-13.3 0-24 10.7-24 24v264h128v-65.2c0-14.3 17.3-21.4 27.4-11.3L379 308c6.6 6.7 6.6 17.4 0 24l-95.7 96.4c-10.1 10.1-27.4 3-27.4-11.3V352H128v136c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H376c-13.2 0-24-10.8-24-24z"
-                                ></path>
-                            </svg>
-                            Import
-                        </button>
-                        <button type="default" kind="solid" icon="left" onClick={this.exportClick}>
-                            <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                <path
-                                    fill="currentColor"
-                                    d="M384 121.9c0-6.3-2.5-12.4-7-16.9L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128zM571 308l-95.7-96.4c-10.1-10.1-27.4-3-27.4 11.3V288h-64v64h64v65.2c0 14.3 17.3 21.4 27.4 11.3L571 332c6.6-6.6 6.6-17.4 0-24zm-379 28v-32c0-8.8 7.2-16 16-16h176V160H248c-13.2 0-24-10.8-24-24V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V352H208c-8.8 0-16-7.2-16-16z"
-                                ></path>
-                            </svg>
-                            Export
-                        </button>
+        return (
+            <div className="app-shell">
+                <div className="block bg-white shadow-md p-8 mb-8 rounded">
+                    <div className="flex justify-between items-center mb-12">
+                        <h1 className="text-4xl text-grey-700">Color Palette</h1>
+                        <div className="flex items-center">
+                            <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
+                                Help
+                            </button>
+                            <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
+                                Reset
+                            </button>
+                            <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
+                                Import
+                            </button>
+                            <button type="default" kind="text" onClick={this.exportClick}>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    <div className="button-wrapper">{buttons}</div>
+                </div>
+                <div className="block bg-white shadow-md p-8 mb-8 rounded">
+                    <div className="active-shade">
+                        <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
+                        <div className="shades-wrapper">{shades}</div>
                     </div>
                 </div>
-                <div className="button-wrapper">{buttons}</div>
-                {activeShade}
+                <div className="block bg-white shadow-md p-8 mb-8 rounded">
+                    <h2 className="text-2xl text-grey-700 mr-4">Accessability Breakdown</h2>
+                </div>
             </div>
         );
-        return <div className="app-shell">{colorButtons}</div>;
     }
 }
 render(<Application />, document.body.querySelector('#mounting-point'));
