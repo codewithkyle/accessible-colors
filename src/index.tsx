@@ -13,33 +13,50 @@ type AppState = {
 };
 
 class Application extends Component<{}, AppState> {
+    private initialColors: Array<Color>;
+
     constructor() {
         super();
+        this.initialColors = [
+            {
+                label: 'Blue',
+                shades: ['#EBF8FF', '#BEE3F8', '#90CDF4', '#63B3ED', '#4299E1', '#3182CE', '#2B6CB0', '#2C5282', '#2A4365'],
+            },
+            {
+                label: 'Success',
+                shades: ['#F0FFF4', '#C6F6D5', '#9AE6B4', '#68D391', '#48BB78', '#38A169', '#2F855A', '#276749', '#22543D'],
+            },
+            {
+                label: 'Warning',
+                shades: ['#FFFFF0', '#FEFCBF', '#FAF089', '#F6E05E', '#ECC94B', '#D69E2E', '#B7791F', '#975A16', '#744210'],
+            },
+            {
+                label: 'Danger',
+                shades: ['#FFF5F5', '#FED7D7', '#FEB2B2', '#FC8181', '#F56565', '#E53E3E', '#C53030', '#9B2C2C', '#742A2A'],
+            },
+        ];
+
         this.state = {
-            colors: [
-                {
-                    label: 'Blue',
-                    shades: ['#EBF8FF', '#BEE3F8', '#90CDF4', '#63B3ED', '#4299E1', '#3182CE', '#2B6CB0', '#2C5282', '#2A4365'],
-                },
-                {
-                    label: 'Success',
-                    shades: ['#F0FFF4', '#C6F6D5', '#9AE6B4', '#68D391', '#48BB78', '#38A169', '#2F855A', '#276749', '#22543D'],
-                },
-                {
-                    label: 'Warning',
-                    shades: ['#FFFFF0', '#FEFCBF', '#FAF089', '#F6E05E', '#ECC94B', '#D69E2E', '#B7791F', '#975A16', '#744210'],
-                },
-                {
-                    label: 'Danger',
-                    shades: ['#FFF5F5', '#FED7D7', '#FEB2B2', '#FC8181', '#F56565', '#E53E3E', '#C53030', '#9B2C2C', '#742A2A'],
-                },
-            ],
+            colors: [],
             activeColorIndex: 0,
         };
+
+        const initialColors = localStorage.getItem('colors');
+        if (initialColors) {
+            // @ts-ignore
+            this.state.colors = JSON.parse(initialColors);
+        } else {
+            // @ts-ignore
+            this.state.colors = this.initialColors;
+        }
     }
 
     private switchActiveColor(index: number) {
         this.setState({ activeColorIndex: index });
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('colors', JSON.stringify(this.state.colors));
     }
 
     private newColorClick: EventListener = () => {
@@ -54,6 +71,11 @@ class Application extends Component<{}, AppState> {
 
     private importClick: EventListener = () => {
         // TODO: Open a model and allow the user to provide a hyphen seperated string of hex codes
+    };
+
+    private resetColors: EventListener = () => {
+        localStorage.removeItem('colors');
+        this.setState({ colors: this.initialColors, activeColorIndex: 0 });
     };
 
     private colorChangeEvent: EventListener = (e: Event) => {
@@ -117,7 +139,7 @@ class Application extends Component<{}, AppState> {
                             </svg>
                             Import
                         </button>
-                        <button type="default" kind="solid" icon="left" onClick={this.exportClick}>
+                        <button type="default" kind="solid" icon="left" className="mr-4" onClick={this.exportClick}>
                             <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                 <path
                                     fill="currentColor"
@@ -125,6 +147,15 @@ class Application extends Component<{}, AppState> {
                                 ></path>
                             </svg>
                             Export
+                        </button>
+                        <button type="default" kind="solid" icon="left" onClick={this.resetColors}>
+                            <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path
+                                    fill="currentColor"
+                                    d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"
+                                ></path>
+                            </svg>
+                            Reset
                         </button>
                     </div>
                 </div>
