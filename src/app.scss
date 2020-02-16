@@ -100,9 +100,15 @@
                 transform: none;
                 transform-origin: center;
                 margin-right: 1rem;
+                border: none;
+                outline: none;
 
                 &:hover,
                 &:focus{
+                    label{
+                        transform: scale(1.15);
+                    }
+
                     .tooltip{
                         opacity: 1;
                     }
@@ -126,13 +132,15 @@
                     border-radius: 0.25rem;
                     box-shadow: var(--shadow-inner);
                     cursor: pointer;
+                    transform: scale(1);
+                    transition: all 150ms var(--ease-bounce);
                 }
 
                 .tooltip{
                     position: absolute;
                     left: 50%;
                     transform: translateX(-50%);
-                    top: calc(100% + 0.25rem);
+                    top: calc(100% + 0.5rem);
                     background-color: var(--neutral-800);
                     color: var(--white);
                     height: 24px;

@@ -1,16 +1,26 @@
 button{
     &[type="default"]{
+        position: relative;
+        box-sizing: border-box;
+        box-shadow: none;
+        outline: none;
+        border: none;
         height: 36px;
         cursor: pointer;
+        background: transparent;
         user-select: none;
         font-size: 0.875rem;
         font-weight: var(--font-medium);
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        min-width: 76px;
         text-transform: uppercase;
         border-radius: 0.125rem;
+
+        &:focus-visible{
+            outline: 2px solid var(--black);
+            border-color: var(--white);
+        }
     }
 
     &[kind="solid"]{
@@ -25,12 +35,134 @@ button{
             border-color: var(--primary-600);
         }
 
-        &:focus-visible{
-            outline: 2px solid var(--black);
-            border-color: var(--white);
+        &:active{
+            background-color: var(--primary-800);
+            border-color: var(--primary-800);
+        }
+    }
+
+    &[kind="outline"]{
+        border: 2px solid var(--primary-700);
+        color: var(--primary-700);
+        padding: 0 1rem;
+        transition: all 75ms var(--ease);
+
+        &::before{
+            content:"";
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-500);
+            opacity: 0.06;
+            transform-origin: center;
+            transform: scale(0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 75ms var(--ease);
+        }
+
+        &:hover{
+            &::before{
+                transform: scale(1);
+                opacity: 0.06;
+            }
         }
 
         &:active{
+            &::before{
+                opacity: 0.15;
+            }
+        }
+    }
+
+    &[kind="outline-alt"]{
+        border: 2px solid var(--neutral-300);
+        color: var(--primary-700);
+        padding: 0 1rem;
+        transition: all 75ms var(--ease);
+
+        &::before{
+            content:"";
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-500);
+            opacity: 0.06;
+            transform-origin: center;
+            transform: scale(0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 75ms var(--ease);
+        }
+
+        &:hover{
+            border-color: var(--primary-700);
+
+            &::before{
+                transform: scale(1);
+                opacity: 0.06;
+            }
+        }
+
+        &:active{
+            &::before{
+                opacity: 0.15;
+            }
+        }
+    }
+
+    &[kind="text"]{
+        color: var(--primary-700);
+        padding: 0 0.5rem;
+        transition: all 75ms var(--ease);
+
+        &::before{
+            content:"";
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-500);
+            opacity: 0.06;
+            transform-origin: center;
+            transform: scale(0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 150ms var(--ease-bounce), opacity 75ms var(--ease);
+        }
+
+        &:hover{
+            &::before{
+                transform: scale(1);
+                opacity: 0.06;
+            }
+        }
+
+        &:active{
+            &::before{
+                opacity: 0.15;
+            }
+        }
+    }
+
+    &[kind="raised"]{
+        background-color: var(--primary-700);
+        border: 2px solid var(--primary-700);
+        box-shadow: var(--shadow-md);
+        color: var(--white);
+        padding: 0 1rem;
+        transition: all 75ms var(--ease);
+
+        &:hover{
+            background-color: var(--primary-600);
+            border-color: var(--primary-600);
+        }
+
+        &:active{
+            transform: translateY(1px);
+            box-shadow: none;
             background-color: var(--primary-800);
             border-color: var(--primary-800);
         }
@@ -53,5 +185,15 @@ button{
             width: 16px;
             height: 18px;
         }
-    }    
+    }
+    &[icon="center"]{
+        width: 39px;
+        padding: 0;
+
+        svg{
+            display: inline-block;
+            width: 16px;
+            height: 18px;
+        }
+    }   
 }
