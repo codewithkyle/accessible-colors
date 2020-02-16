@@ -42,10 +42,6 @@ class Application extends Component<{}, AppState> {
         this.setState({ activeColorIndex: index });
     }
 
-    private renderColorButtons = (color: Color, index) => (
-        <ColorButton index={index} color={color} activeColorIndex={this.state.activeColorIndex} callback={this.switchActiveColor.bind(this)} />
-    );
-
     private newColorClick: EventListener = () => {
         openModal().then((newColor: Color) => {
             this.setState({ colors: [...this.state.colors, newColor] });
@@ -58,6 +54,28 @@ class Application extends Component<{}, AppState> {
 
     private importClick: EventListener = () => {
         // TODO: Open a model and allow the user to provide a hyphen seperated string of hex codes
+    };
+
+    private colorChangeEvent: EventListener = (e: Event) => {
+        const target = e.currentTarget as HTMLInputElement;
+        const index = parseInt(target.dataset.index);
+        const updatedState = { ...this.state };
+        updatedState.colors[this.state.activeColorIndex].shades[index] = target.value;
+        this.setState(updatedState);
+    };
+
+    private renderColorButtons = (color: Color, index) => (
+        <ColorButton index={index} color={color} activeColorIndex={this.state.activeColorIndex} callback={this.switchActiveColor.bind(this)} />
+    );
+
+    private renderShade = (shade: string, index) => {
+        return (
+            <div className="shade-button" key={index}>
+                <input type="color" value={shade} data-index={index} id={`shade-${index}`} onChange={this.colorChangeEvent} />
+                <label htmlFor={`shade-${index}`} style={{ backgroundColor: shade }}></label>
+                <div className="tooltip">{shade}</div>
+            </div>
+        );
     };
 
     render() {
@@ -76,6 +94,15 @@ class Application extends Component<{}, AppState> {
                 <span>Add Color</span>
             </button>
         );
+
+        let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
+        const activeShade = (
+            <div className="active-shade">
+                <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
+                <div className="shades-wrapper">{shades}</div>
+            </div>
+        );
+
         const colorButtons = (
             <div className="colors">
                 <div className="flex justify-between items-center mb-8">
@@ -102,6 +129,7 @@ class Application extends Component<{}, AppState> {
                     </div>
                 </div>
                 <div className="button-wrapper">{buttons}</div>
+                {activeShade}
             </div>
         );
         return <div className="app-shell">{colorButtons}</div>;
