@@ -116,6 +116,7 @@ button{
     &[kind="text"]{
         color: var(--primary-700);
         padding: 0 0.5rem;
+        height: 39px;
         transition: all 75ms var(--ease);
 
         &::before{
