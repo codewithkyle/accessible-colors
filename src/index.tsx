@@ -119,9 +119,9 @@ class Application extends Component<{}, AppState> {
         let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
         return (
             <div className="app-shell">
-                <div className="block bg-white shadow-md p-8 mb-8 rounded">
-                    <div className="flex justify-between items-center mb-12">
-                        <h1 className="text-4xl text-grey-700">Color Palette</h1>
+                <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded">
+                    <div className="flex justify-between items-center mb-8">
+                        <h1 className="text-2xl text-grey-700">Color Palette</h1>
                         <div className="flex items-center">
                             <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
                                 Help
@@ -139,7 +139,7 @@ class Application extends Component<{}, AppState> {
                     </div>
                     <div className="button-wrapper">{buttons}</div>
                 </div>
-                <div className="block bg-white shadow-md p-8 mb-8 rounded">
+                <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded">
                     <div className="active-shade">
                         <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
                         <div className="shades-wrapper">{shades}</div>
