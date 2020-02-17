@@ -27,7 +27,6 @@ a:focus{
 }
 
 body{
-    padding: 4rem 1rem;
     background-color: var(--dashboard-background);
 }
 

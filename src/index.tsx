@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import { h, render, Component, Fragment } from 'preact';
 import './variables.scss';
 import './base.css';
 import './app.scss';
@@ -118,37 +118,40 @@ class Application extends Component<{}, AppState> {
         );
         let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
         return (
-            <div className="app-shell">
-                <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded">
-                    <div className="flex justify-between items-center mb-8">
-                        <h1 className="text-2xl text-grey-700">Color Palette</h1>
-                        <div className="flex items-center">
-                            <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
-                                Help
-                            </button>
-                            <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
-                                Reset
-                            </button>
-                            <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
-                                Import
-                            </button>
-                            <button type="default" kind="text" onClick={this.exportClick}>
-                                Export
-                            </button>
+            <Fragment>
+                <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+                    <h1 className="text-grey-700 text-2xl">Accessible Colors</h1>
+                    <div className="flex items-center">
+                        <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
+                            Help
+                        </button>
+                        <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
+                            Reset
+                        </button>
+                        <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
+                            Import
+                        </button>
+                        <button type="default" kind="text" onClick={this.exportClick}>
+                            Export
+                        </button>
+                    </div>
+                </header>
+                <div className="app-shell">
+                    <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded-md">
+                        <h2 className="text-2xl text-grey-700 mb-4">Color Palette</h2>
+                        <div className="button-wrapper">{buttons}</div>
+                    </div>
+                    <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded-md">
+                        <div className="active-shade">
+                            <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
+                            <div className="shades-wrapper">{shades}</div>
                         </div>
                     </div>
-                    <div className="button-wrapper">{buttons}</div>
-                </div>
-                <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded">
-                    <div className="active-shade">
-                        <h2 className="text-2xl text-grey-700 mb-4">Shades</h2>
-                        <div className="shades-wrapper">{shades}</div>
+                    <div className="block bg-white shadow-md p-8 mb-8 rounded-md">
+                        <h2 className="text-2xl text-grey-700 mr-4">Accessability Breakdown</h2>
                     </div>
                 </div>
-                <div className="block bg-white shadow-md p-8 mb-8 rounded">
-                    <h2 className="text-2xl text-grey-700 mr-4">Accessability Breakdown</h2>
-                </div>
-            </div>
+            </Fragment>
         );
     }
 }
