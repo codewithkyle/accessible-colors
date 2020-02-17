@@ -6,6 +6,7 @@ import './buttons.scss';
 import { ColorButton } from './color-button/color-button';
 import { openModal } from './new-color';
 import './new-color-modal.scss';
+import { hexToRgb, contrast } from './colors';
 
 type AppState = {
     colors: Array<Color>;
@@ -100,6 +101,47 @@ class Application extends Component<{}, AppState> {
         );
     };
 
+    private buildRow = (shade: string, index: number) => {
+        const rgb = hexToRgb(shade);
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        const white = { r: 255, g: 255, b: 255 };
+        const black = { r: 0, g: 0, b: 0 };
+        const grey100 = hexToRgb('#f5f5f5');
+        const grey900 = hexToRgb('#212121');
+
+        if (index <= 2) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                </tr>
+            );
+        } else if (index >= 6) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                </tr>
+            );
+        } else {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                </tr>
+            );
+        }
+    };
+
     render() {
         let buttons = null;
         if (this.state.colors.length) {
@@ -117,6 +159,7 @@ class Application extends Component<{}, AppState> {
             </button>
         );
         let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
+        let rows = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.buildRow(shade, index));
         return (
             <Fragment>
                 <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
@@ -148,7 +191,19 @@ class Application extends Component<{}, AppState> {
                         </div>
                     </div>
                     <div className="block bg-white shadow-md p-8 mb-8 rounded-md">
-                        <h2 className="text-2xl text-grey-700 mr-4">Accessability Breakdown</h2>
+                        <h2 className="text-2xl text-grey-700 mb-4">Accessability Breakdown</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td style={{ backgroundColor: '#fff' }}>#ffffff</td>
+                                    <td style={{ backgroundColor: '#f5f5f5' }}>#f5f5f5</td>
+                                    <td style={{ backgroundColor: '#212121', color: '#fff' }}>#212121</td>
+                                    <td style={{ backgroundColor: '#000', color: '#fff' }}>#000000</td>
+                                </tr>
+                            </thead>
+                            <tbody>{rows}</tbody>
+                        </table>
                     </div>
                 </div>
             </Fragment>

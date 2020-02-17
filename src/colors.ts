@@ -1,16 +1,34 @@
 function luminanace(r, g, b) {
-    let a = [r, g, b].map(v => {
-        v /= 255;
-        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    var colorArray = [r, g, b];
+    var colorFactor;
+    var i;
+    for (i = 0; i < colorArray.length; i++) {
+        colorFactor = colorArray[i] / 255;
+        if (colorFactor <= 0.03928) {
+            colorFactor = colorFactor / 12.92;
+        } else {
+            colorFactor = Math.pow((colorFactor + 0.055) / 1.055, 2.4);
+        }
+        colorArray[i] = colorFactor;
+    }
+    return colorArray[0] * 0.2126 + colorArray[1] * 0.7152 + colorArray[2] * 0.0722 + 0.05;
 }
+
+function round(number, decimals) {
+    // @ts-ignore
+    return +(Math.round(number + 'e+' + decimals) + 'e-' + decimals);
+}
+
 /**
  * Calculates the contrast ratio between two RGB objects.
  * @see https://stackoverflow.com/a/9733420
  */
 export function contrast(color1: RGB, color2: RGB): number {
-    return (luminanace(color1.r, color1.g, color1.b) + 0.05) / (luminanace(color2.r, color2.g, color2.b) + 0.05);
+    const foreGround = luminanace(color1.r, color1.g, color1.b);
+    const background = luminanace(color2.r, color2.g, color2.b);
+    let luminanceValue = foreGround / background > background / foreGround ? foreGround / background : background / foreGround;
+    luminanceValue = round(luminanceValue, 2);
+    return luminanceValue;
 }
 
 /**

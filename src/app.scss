@@ -162,4 +162,52 @@
         border-radius: 0.5rem;
         margin-bottom: 2rem;
     }
+
+    table{
+        width: 100%;
+        display: block;
+
+        thead{
+            display: block;
+            width: 100%;
+
+            tr{
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+
+                td{
+                    flex: 1;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 56px;
+                    padding: 0 2rem;
+                    text-align: left;
+                    font-weight: var(--font-medium);
+                    font-size: var(--text-md);
+                }
+            }
+        }
+
+        tbody{
+            display: block;
+            width: 100%;
+
+            tr{
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+
+                td{
+                    height: 52px;
+                    padding: 0 2rem;
+                    flex: 1;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
 }
