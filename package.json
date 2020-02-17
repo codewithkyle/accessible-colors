@@ -5,7 +5,8 @@
         "watch:preview": "npm run preview",
         "build": "run-p watch:*",
         "start": "run-p watch:*",
-        "production": "cross-env NODE_ENV=production webpack"
+        "production": "cross-env NODE_ENV=production webpack",
+        "deploy": "node ./deploy.js"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^2.0.6",
@@ -15,9 +16,11 @@
         "babel-loader": "^8.0.6",
         "cross-env": "^7.0.0",
         "css-loader": "^3.4.2",
+        "dotenv": "^8.2.0",
         "eslint": "^6.8.0",
         "eslint-config-prettier": "^6.10.0",
         "eslint-plugin-prettier": "^3.1.2",
+        "gh-pages": "^2.2.0",
         "node-sass": "^4.13.1",
         "npm-run-all": "^4.1.5",
         "postcss-loader": "^3.0.0",
