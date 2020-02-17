@@ -109,7 +109,17 @@ class Application extends Component<{}, AppState> {
         const grey100 = hexToRgb('#f5f5f5');
         const grey900 = hexToRgb('#212121');
 
-        if (index <= 2) {
+        if (index <= 1) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</td>
+                </tr>
+            );
+        } else if (index === 2) {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
@@ -119,12 +129,22 @@ class Application extends Component<{}, AppState> {
                     <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</td>
                 </tr>
             );
-        } else if (index >= 6) {
+        } else if (index === 6) {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
                     <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</td>
                     <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                </tr>
+            );
+        } else if (index >= 7) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</td>
                     <td style={{ backgroundColor: shade }}></td>
                     <td style={{ backgroundColor: shade }}></td>
                 </tr>
