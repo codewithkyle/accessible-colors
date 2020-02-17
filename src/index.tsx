@@ -101,7 +101,7 @@ class Application extends Component<{}, AppState> {
         );
     };
 
-    private buildRow = (shade: string, index: number) => {
+    private buildGrayscaleRow = (shade: string, index: number) => {
         const rgb = hexToRgb(shade);
         const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
         const white = { r: 255, g: 255, b: 255 };
@@ -162,6 +162,125 @@ class Application extends Component<{}, AppState> {
         }
     };
 
+    private buildShadingHead = (shade: string, index: number) => {
+        const rgb = hexToRgb(shade);
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        if (index >= 3 && index <= 5) {
+            return null;
+        }
+        return <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>;
+    };
+
+    private checkShadeAccessability(shade: RGB, index: number, textColor: string, bg: string) {
+        if (index === 0) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[6])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[7])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[8])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                </tr>
+            );
+        } else if (index === 1) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[7])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[8])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                </tr>
+            );
+        } else if (index === 2) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[8])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                </tr>
+            );
+        } else if (index === 6) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[0])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                </tr>
+            );
+        } else if (index === 7) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[0])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[1])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                </tr>
+            );
+        } else if (index === 8) {
+            return (
+                <tr>
+                    <td style={{ backgroundColor: bg, color: textColor }}>{bg}</td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[0])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[1])) >= 7 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg, color: textColor }}>
+                        {contrast(shade, hexToRgb(this.state.colors[this.state.activeColorIndex].shades[2])) >= 4.5 ? 'Pass' : 'Fail'}
+                    </td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                    <td style={{ backgroundColor: bg }}></td>
+                </tr>
+            );
+        }
+    }
+
+    private buildShadingRow = (shade: string, index: number) => {
+        const rgb = hexToRgb(shade);
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        if (index >= 3 && index <= 5) {
+            return null;
+        } else {
+            return this.checkShadeAccessability(rgb, index, textColor, shade);
+        }
+    };
+
     render() {
         let buttons = null;
         if (this.state.colors.length) {
@@ -178,8 +297,9 @@ class Application extends Component<{}, AppState> {
                 <span>Add Color</span>
             </button>
         );
-        let shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
-        let rows = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.buildRow(shade, index));
+        const shades = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.renderShade(shade, index));
+        const grayscaleRows = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.buildGrayscaleRow(shade, index));
+        const shadingRows = this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.buildShadingRow(shade, index));
         return (
             <Fragment>
                 <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
@@ -210,8 +330,8 @@ class Application extends Component<{}, AppState> {
                             <div className="shades-wrapper">{shades}</div>
                         </div>
                     </div>
-                    <div className="block bg-white shadow-md p-8 mb-8 rounded-md">
-                        <h2 className="text-2xl text-grey-700 mb-4">Accessability Breakdown</h2>
+                    <div className="block bg-white shadow-md px-8 pb-8 pt-6 mb-8 rounded-md">
+                        <h2 className="text-2xl text-grey-700 mb-4">Grayscale Breakdown</h2>
                         <table>
                             <thead>
                                 <tr>
@@ -222,7 +342,19 @@ class Application extends Component<{}, AppState> {
                                     <td style={{ backgroundColor: '#000', color: '#fff' }}>#000000</td>
                                 </tr>
                             </thead>
-                            <tbody>{rows}</tbody>
+                            <tbody>{grayscaleRows}</tbody>
+                        </table>
+                    </div>
+                    <div className="block bg-white shadow-md px-8 pb-8 pt-6 mb-8 rounded-md">
+                        <h2 className="text-2xl text-grey-700 mb-4">Shading Breakdown</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    {this.state.colors[this.state.activeColorIndex].shades.map((shade, index) => this.buildShadingHead(shade, index))}
+                                </tr>
+                            </thead>
+                            <tbody>{shadingRows}</tbody>
                         </table>
                     </div>
                 </div>
