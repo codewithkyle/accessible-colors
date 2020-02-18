@@ -4,15 +4,14 @@ import './variables.scss';
 import './base.css';
 import './app.scss';
 import './buttons.scss';
-import './table.scss';
-import './new-color-modal.scss';
+import './color-modal/new-color-modal.scss';
 import './footer.scss';
 
 import { ColorButton } from './color-button/color-button';
-import { openModal } from './new-color';
-import { GreyscaleTable } from './greyscale-breakdown';
-import { ActiveShade } from './active-shade';
-import { ShadingTable } from './shading-breakdown';
+import { openModal } from './color-modal/new-color';
+import { GreyscaleTable } from './tables/greyscale-breakdown';
+import { ActiveShade } from './active-shade/active-shade';
+import { ShadingTable } from './tables/shading-breakdown';
 
 type AppState = {
     colors: Array<Color>;

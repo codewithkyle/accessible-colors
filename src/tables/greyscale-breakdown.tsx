@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
-import { hexToRgb, contrast } from './colors';
+import { hexToRgb, contrast } from '../util/colors';
+import './table.scss';
 
 type GreyscaleTableProps = {
     shades: Array<string> | null;
