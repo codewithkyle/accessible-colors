@@ -1,4 +1,4 @@
-export function openModal() {
+export function openModal(label: string = null, shades: Array<string> = null) {
     return new Promise((resolve, reject) => {
         const app = document.body.querySelector('#mounting-point') as HTMLElement;
         const container = document.createElement('new-color-modal');
@@ -33,11 +33,14 @@ export function openModal() {
 
         const colorLabelWrapper = document.createElement('color-label-wrapper');
         const colorLabelInput = document.createElement('input');
-        const colorLabelInputLable = document.createElement('label');
+        const colorLabelInputLabel = document.createElement('label');
         colorLabelInput.id = 'new-color-label';
-        colorLabelInputLable.htmlFor = colorLabelInput.id;
-        colorLabelInputLable.innerHTML = 'Name';
-        colorLabelWrapper.append(colorLabelInputLable, colorLabelInput);
+        colorLabelInputLabel.htmlFor = colorLabelInput.id;
+        colorLabelInputLabel.innerHTML = 'Name';
+        if (label) {
+            colorLabelInput.value = label;
+        }
+        colorLabelWrapper.append(colorLabelInputLabel, colorLabelInput);
         modal.append(colorLabelWrapper);
 
         let inputs = [];
@@ -48,6 +51,9 @@ export function openModal() {
             input.id = `shade-${i}`;
             label.htmlFor = input.id;
             label.innerHTML = `Shade ${i + 1}00`;
+            if (shades) {
+                input.value = shades[i];
+            }
             wrapper.appendChild(label);
             wrapper.appendChild(input);
             inputs.push(wrapper);

@@ -98,6 +98,14 @@ class Application extends Component<{}, AppState> {
         this.setState(updatedState);
     }
 
+    private editColor() {
+        const updatedState = { ...this.state };
+        openModal(updatedState.colors[updatedState.activeColorIndex].label, updatedState.colors[updatedState.activeColorIndex].shades).then((newColor: Color) => {
+            updatedState.colors[updatedState.activeColorIndex] = newColor;
+            this.setState(updatedState);
+        });
+    }
+
     private renderColorButtons = (color: Color, index) => (
         <ColorButton index={index} color={color} activeColorIndex={this.state.activeColorIndex} callback={this.switchActiveColor.bind(this)} />
     );
@@ -147,6 +155,7 @@ class Application extends Component<{}, AppState> {
                         name={this.state.colors[this.state.activeColorIndex]?.label}
                         deleteCallback={this.deleteColor.bind(this)}
                         updateCallback={this.updateShade.bind(this)}
+                        editCallback={this.editColor.bind(this)}
                     />
                     <GreyscaleTable shades={this.state.colors[this.state.activeColorIndex]?.shades} />
                     <ShadingTable shades={this.state.colors[this.state.activeColorIndex]?.shades} />

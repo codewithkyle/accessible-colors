@@ -6,6 +6,7 @@ type ActiveShadeProps = {
     shades: Array<string> | null;
     deleteCallback: Function;
     updateCallback: Function;
+    editCallback: Function;
 };
 
 export class ActiveShade extends Component<ActiveShadeProps, {}> {
@@ -17,6 +18,10 @@ export class ActiveShade extends Component<ActiveShadeProps, {}> {
 
     private deleteColor: EventListener = () => {
         this.props.deleteCallback();
+    };
+
+    private editColor: EventListener = () => {
+        this.props.editCallback();
     };
 
     private renderShade = (shade: string, index) => {
@@ -38,7 +43,7 @@ export class ActiveShade extends Component<ActiveShadeProps, {}> {
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-2xl text-grey-700">{this.props.name}</h2>
                         <div>
-                            <button className="mr-2" type="default" kind="text">
+                            <button className="mr-2" type="default" kind="text" onClick={this.editColor}>
                                 Edit
                             </button>
                             <button type="default" kind="text" onClick={this.deleteColor}>
