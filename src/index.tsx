@@ -113,50 +113,198 @@ class Application extends Component<{}, AppState> {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
                 </tr>
             );
         } else if (index === 2) {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
                 </tr>
             );
         } else if (index === 6) {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
                 </tr>
             );
         } else if (index >= 7) {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade, color: textColor }}>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <span>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</span>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
                 </tr>
             );
         } else {
             return (
                 <tr>
                     <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
-                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, white) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, white) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey100) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, grey900) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
+                    <td style={{ backgroundColor: shade, color: textColor }}>
+                        <dl className="tooltip">
+                            <dt>AA:</dt>
+                            <dd>{contrast(rgb, black) >= 4.5 ? 'Pass' : 'Fail'}</dd>
+                            <dt>AAA:</dt>
+                            <dd>{contrast(rgb, black) >= 7 ? 'Pass' : 'Fail'}</dd>
+                        </dl>
+                    </td>
                 </tr>
             );
         }
@@ -275,7 +423,17 @@ class Application extends Component<{}, AppState> {
         const rgb = hexToRgb(shade);
         const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
         if (index >= 3 && index <= 5) {
-            return null;
+            return (
+                <tr>
+                    <td style={{ backgroundColor: shade, color: textColor }}>{shade}</td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                    <td style={{ backgroundColor: shade }}></td>
+                </tr>
+            );
         } else {
             return this.checkShadeAccessability(rgb, index, textColor, shade);
         }
