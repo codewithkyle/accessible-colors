@@ -81,7 +81,7 @@ class Application extends Component<{}, AppState> {
 
     private resetColors: EventListener = () => {
         localStorage.removeItem('colors');
-        this.setState({ colors: this.initialColors, activeColorIndex: 0 });
+        this.setState({ colors: [...this.initialColors], activeColorIndex: 0 });
     };
 
     private deleteColor() {
