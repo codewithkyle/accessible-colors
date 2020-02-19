@@ -82,17 +82,33 @@ table{
                     dd{
                         display: inline-block;
                         width: 50%;
+                        line-height: 0.75;
                         font-size: var(--text-sm);
                     }
 
                     dt{
                         font-weight: var(--font-semibold);
                         text-align: right;
+
+                        &:first-of-type{
+                            transform: translateY(2px);
+                        }
+
+                        &:last-of-type{
+                            transform: translateY(-2px);
+                        }
                     }
 
                     dd{
                         text-align: left;
                         padding-left: 0.25rem;
+                        
+                        &:first-of-type{
+                            transform: translateY(2px);
+                        }
+                        &:last-of-type{
+                            transform: translateY(-2px);
+                        }
                     }
                 }
             }
