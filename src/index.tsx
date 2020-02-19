@@ -50,14 +50,41 @@ class Application extends Component<{}, AppState> {
             activeColorIndex: 0,
         };
 
-        const initialColors = localStorage.getItem('colors');
-        if (initialColors) {
+        if (location.search.length) {
             // @ts-ignore
-            this.state.colors = JSON.parse(initialColors);
+            this.state.colors = this.parseURL();
+            localStorage.setItem('colors', JSON.stringify(this.state.colors));
+            window.history.replaceState(null, document.title, location.origin);
+        } else if (localStorage.getItem('colors')) {
+            // @ts-ignore
+            this.state.colors = JSON.parse(localStorage.getItem('colors'));
         } else {
             // @ts-ignore
             this.state.colors = this.initialColors;
         }
+    }
+
+    private parseURL(): Array<Color> {
+        const colors: Array<Color> = [];
+        const url = location.search
+            .replace(/^(\?)/g, '')
+            .replace(/(\&color\=)|(color\=)/g, '||')
+            .trim();
+        const colorParams = url.split('||');
+        for (let p = 0; p < colorParams.length; p++) {
+            if (colorParams[p].length) {
+                const vars = colorParams[p].split('|');
+                const newColor: Color = {
+                    label: vars[0],
+                    shades: [],
+                };
+                for (let i = 1; i < vars.length; i++) {
+                    newColor.shades.push(`#${vars[i]}`);
+                }
+                colors.push(newColor);
+            }
+        }
+        return colors;
     }
 
     private switchActiveColor(index: number) {
