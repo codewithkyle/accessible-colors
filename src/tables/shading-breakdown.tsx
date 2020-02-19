@@ -10,7 +10,7 @@ type ShadingTableProps = {
 export class ShadingTable extends Component<ShadingTableProps, {}> {
     private buildShadingHead = (shade: string, index: number) => {
         const rgb = hexToRgb(shade);
-        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 4.5 ? '#000' : '#fff';
         if (index >= 3 && index <= 5) {
             return null;
         }
@@ -359,7 +359,7 @@ export class ShadingTable extends Component<ShadingTableProps, {}> {
 
     private buildShadingRow = (shade: string, index: number) => {
         const rgb = hexToRgb(shade);
-        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 4.5 ? '#000' : '#fff';
         if (index >= 3 && index <= 5) {
             return (
                 <tr>

@@ -9,7 +9,7 @@ type GreyscaleTableProps = {
 export class GreyscaleTable extends Component<GreyscaleTableProps, {}> {
     private buildGrayscaleRow = (shade: string, index: number) => {
         const rgb = hexToRgb(shade);
-        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff';
+        const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 4.5 ? '#000' : '#fff';
         const white = { r: 255, g: 255, b: 255 };
         const black = { r: 0, g: 0, b: 0 };
         const grey100 = hexToRgb('#f5f5f5');
