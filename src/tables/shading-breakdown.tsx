@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { hexToRgb, contrast } from '../util/colors';
 import './table.scss';
+import { RGB } from '../types';
 
 type ShadingTableProps = {
     shades: Array<string>;

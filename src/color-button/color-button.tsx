@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import './color-button.scss';
 import { hexToRgb, contrast } from '../util/colors';
+import { Color } from '../types';
 
 type ColorButtonProps = {
     index: number;

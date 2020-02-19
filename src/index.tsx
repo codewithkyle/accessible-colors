@@ -6,12 +6,15 @@ import './app.scss';
 import './buttons.scss';
 import './color-modal/new-color-modal.scss';
 import './footer.scss';
+import './export-modal/export-modal.scss';
 
 import { ColorButton } from './color-button/color-button';
 import { openModal } from './color-modal/new-color';
 import { GreyscaleTable } from './tables/greyscale-breakdown';
 import { ActiveShade } from './active-shade/active-shade';
 import { ShadingTable } from './tables/shading-breakdown';
+import { exportColors } from './export-modal/export';
+import { Color } from './types';
 
 type AppState = {
     colors: Array<Color>;
@@ -25,19 +28,19 @@ class Application extends Component<{}, AppState> {
         super();
         this.initialColors = [
             {
-                label: 'Blue',
+                label: 'blue',
                 shades: ['#EBF8FF', '#BEE3F8', '#90CDF4', '#63B3ED', '#4299E1', '#3182CE', '#2B6CB0', '#2C5282', '#2A4365'],
             },
             {
-                label: 'Success',
+                label: 'success',
                 shades: ['#F0FFF4', '#C6F6D5', '#9AE6B4', '#68D391', '#48BB78', '#38A169', '#2F855A', '#276749', '#22543D'],
             },
             {
-                label: 'Warning',
+                label: 'warning',
                 shades: ['#FFFFF0', '#FEFCBF', '#FAF089', '#F6E05E', '#ECC94B', '#D69E2E', '#B7791F', '#975A16', '#744210'],
             },
             {
-                label: 'Danger',
+                label: 'danger',
                 shades: ['#FFF5F5', '#FED7D7', '#FEB2B2', '#FC8181', '#F56565', '#E53E3E', '#C53030', '#9B2C2C', '#742A2A'],
             },
         ];
@@ -72,7 +75,7 @@ class Application extends Component<{}, AppState> {
     };
 
     private exportClick: EventListener = () => {
-        // TODO: Open a modal and inject color values into a textarea
+        exportColors(this.state.colors);
     };
 
     private importClick: EventListener = () => {

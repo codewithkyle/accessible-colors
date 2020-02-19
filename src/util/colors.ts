@@ -1,3 +1,5 @@
+import { RGB } from '../types';
+
 function luminanace(r, g, b) {
     var colorArray = [r, g, b];
     var colorFactor;
