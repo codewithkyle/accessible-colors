@@ -16,12 +16,10 @@ export class ColorButton extends Component<ColorButtonProps, {}> {
     };
     render() {
         const primaryColor = this.props.color.shades[4];
+        const rgb = hexToRgb(this.props.color.shades[4]);
         const buttonStyle = {
             backgroundColor: primaryColor,
-        };
-        const rgb = hexToRgb(this.props.color.shades[4]);
-        const spanStyle = {
-            color: contrast(rgb, { r: 0, g: 0, b: 0 }) >= 7 ? '#000' : '#fff',
+            color: contrast(rgb, { r: 0, g: 0, b: 0 }) >= 4.5 ? '#000' : '#fff',
         };
         return (
             <button
@@ -31,7 +29,7 @@ export class ColorButton extends Component<ColorButtonProps, {}> {
                 aria-label={`${this.props.color.label} button`}
                 style={buttonStyle}
             >
-                <span style={spanStyle}>{this.props.color.label}</span>
+                <span>{this.props.color.label}</span>
             </button>
         );
     }
