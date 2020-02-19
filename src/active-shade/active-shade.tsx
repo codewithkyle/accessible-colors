@@ -26,9 +26,9 @@ export class ActiveShade extends Component<ActiveShadeProps, {}> {
 
     private renderShade = (shade: string, index) => {
         return (
-            <div className="shade-button" key={index} tabIndex={0}>
-                <input type="color" value={shade} data-index={index} id={`active-shade-${index}`} onChange={this.colorChangeEvent} tabIndex={-1} />
-                <label htmlFor={`active-shade-${index}`} style={{ backgroundColor: shade }}></label>
+            <div className="shade-button" key={index}>
+                <input type="color" value={shade} data-index={index} id={`active-shade-${index}`} onChange={this.colorChangeEvent} name={`active-shade-${index}`} />
+                <label htmlFor={`active-shade-${index}`} style={{ backgroundColor: shade }} aria-label={`${this.props.name} color input`}></label>
                 <div className="tooltip">{shade}</div>
             </div>
         );

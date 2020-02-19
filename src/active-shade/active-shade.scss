@@ -15,8 +15,7 @@
             border: none;
             outline: none;
 
-            &:hover,
-            &:focus{
+            &:hover{
                 label{
                     transform: scale(1.15);
                 }
@@ -33,6 +32,16 @@
                 width: 0;
                 height: 0;
                 opacity: 0;
+
+                &:focus-visible{
+                    & + label{
+                        transform: scale(1.15);
+                    }
+    
+                    & ~ .tooltip{
+                        opacity: 1;
+                    }
+                }
             }
 
             label{
