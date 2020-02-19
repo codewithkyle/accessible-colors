@@ -139,9 +139,9 @@ class Application extends Component<{}, AppState> {
                         <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
                             Reset
                         </button>
-                        <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
+                        {/* <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
                             Import
-                        </button>
+                        </button> */}
                         <button type="default" kind="text" onClick={this.exportClick}>
                             Export
                         </button>
