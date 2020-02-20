@@ -63,35 +63,40 @@ class Application extends Component<{}, AppState> {
         };
 
         if (location.search.length) {
+            const urlParams = this.parseURL();
             // @ts-ignore
-            this.state.colors = this.parseURL();
+            this.state.colors = urlParams.colors;
+            // @ts-ignore
+            this.state.settings = urlParams.settings;
             localStorage.setItem('colors', JSON.stringify(this.state.colors));
+            localStorage.setItem('settings', JSON.stringify(this.state.settings));
             window.history.replaceState(null, document.title, location.origin);
-        } else if (localStorage.getItem('colors')) {
-            // @ts-ignore
-            this.state.colors = JSON.parse(localStorage.getItem('colors'));
         } else {
-            // @ts-ignore
-            this.state.colors = this.initialColors;
-        }
-
-        const settings = localStorage.getItem('settings');
-        if (settings) {
-            // @ts-ignore
-            this.state.settings = JSON.parse(settings);
-        } else {
-            // @ts-ignore
-            this.state.settings = this.initalSettings;
+            if (localStorage.getItem('colors')) {
+                // @ts-ignore
+                this.state.colors = JSON.parse(localStorage.getItem('colors'));
+            } else {
+                // @ts-ignore
+                this.state.colors = this.initialColors;
+            }
+            if (localStorage.getItem('settings')) {
+                // @ts-ignore
+                this.state.settings = JSON.parse(localStorage.getItem('settings'));
+            } else {
+                // @ts-ignore
+                this.state.settings = this.initalSettings;
+            }
         }
     }
 
-    private parseURL(): Array<Color> {
+    private parseURL() {
         const colors: Array<Color> = [];
-        const url = location.search
-            .replace(/^(\?)/g, '')
-            .replace(/(\&color\=)|(color\=)/g, '||')
-            .trim();
-        const colorParams = url.split('||');
+        const url = new URL(location.href);
+        const settings: Settings = {
+            offWhite: `#${url.searchParams.get('off-white')}`,
+            offBlack: `#${url.searchParams.get('off-black')}`,
+        };
+        const colorParams = url.searchParams.getAll('color');
         for (let p = 0; p < colorParams.length; p++) {
             if (colorParams[p].length) {
                 const vars = colorParams[p].split('|');
@@ -105,7 +110,10 @@ class Application extends Component<{}, AppState> {
                 colors.push(newColor);
             }
         }
-        return colors;
+        return {
+            colors: colors,
+            settings: settings,
+        };
     }
 
     private switchActiveColor(index: number) {
@@ -124,7 +132,7 @@ class Application extends Component<{}, AppState> {
     };
 
     private exportClick: EventListener = () => {
-        exportColors(this.state.colors);
+        exportColors(this.state.colors, this.state.settings);
     };
 
     private settings: EventListener = () => {

@@ -1,7 +1,11 @@
-import { Color } from '../types';
+import { Color, Settings } from '../types';
 
-export function exportColors(colors: Array<Color>) {
+export function exportColors(colors: Array<Color>, settings: Settings) {
     return new Promise(resolve => {
+        if (colors.length === 0) {
+            resolve();
+            return;
+        }
         const app = document.body.querySelector('#mounting-point') as HTMLElement;
         app.classList.add('is-blurry');
         const container = document.createElement('export-modal');
@@ -47,6 +51,8 @@ export function exportColors(colors: Array<Color>) {
                 urlInput.value += `${colors[i].shades[s].replace('#', '')}${s !== colors[i].shades.length - 1 ? '|' : ''}`;
             }
         }
+        urlInput.value += `&off-white=${settings.offWhite.replace('#', '').trim()}`;
+        urlInput.value += `&off-black=${settings.offBlack.replace('#', '').trim()}`;
         modal.appendChild(urlLabel);
         modal.appendChild(urlInput);
 
