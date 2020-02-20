@@ -1,0 +1,58 @@
+export function help() {
+    return new Promise(resolve => {
+        const app = document.body.querySelector('#mounting-point') as HTMLElement;
+        app.classList.add('is-blurry');
+        const container = document.createElement('help-modal');
+
+        const backdrop = document.createElement('modal-backdrop');
+        backdrop.addEventListener('click', () => {
+            app.classList.remove('is-blurry');
+            container.remove();
+            resolve();
+        });
+
+        const modal = document.createElement('modal-component');
+
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close');
+        closeButton.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 61.8 61.8"><path style="fill:currentColor;" d="M61.8,6.2L55.6,0L30.9,24.7L6.2,0L0,6.2l24.7,24.7L0,55.6l6.2,6.2l24.7-24.7l24.7,24.7l6.2-6.2L37.1,30.9L61.8,6.2z"/></svg>';
+        closeButton.addEventListener('click', () => {
+            app.classList.remove('is-blurry');
+            container.remove();
+            resolve();
+        });
+        modal.appendChild(closeButton);
+
+        const heading = document.createElement('h2');
+        heading.innerHTML = 'General';
+        modal.appendChild(heading);
+        const desc = document.createElement('p');
+        desc.innerHTML = `This app is designed to assist in the creation of a systematically accessible color palette and does not generate shades/color palettes for you. Colors contain 9 shades arranged from lightest (100) to darkest (900) and only the first and last 3 shades must follow the accessibility system.`;
+        modal.appendChild(desc);
+
+        const grayscale = document.createElement('h2');
+        grayscale.innerHTML = 'Grayscale Breakdown';
+        modal.appendChild(grayscale);
+        const grayscaleCopy = document.createElement('p');
+        grayscaleCopy.innerHTML =
+            'The grayscale breakdown requires that a colors first and last 2 shades pass the AAA (7:1) contrast ratio and the 3rd and 6th shade passes the AA (4.5:1) contrast ratio.';
+        modal.appendChild(grayscaleCopy);
+
+        const shading = document.createElement('h2');
+        shading.innerHTML = 'Shading Breakdown';
+        modal.appendChild(shading);
+        const shadingCopy = document.createElement('p');
+        shadingCopy.innerHTML =
+            'The shading breakdown requires that the first and last 3 shades must be accessible with each other. Refer to the table below for the required contrast ratios.';
+        modal.appendChild(shadingCopy);
+
+        const shadingTable = document.body.querySelector('template[tag="shading-table"]') as HTMLTemplateElement;
+        modal.appendChild(shadingTable.content);
+
+        container.appendChild(backdrop);
+        container.appendChild(modal);
+        document.body.appendChild(container);
+        closeButton.focus();
+    });
+}

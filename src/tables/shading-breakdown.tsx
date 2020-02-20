@@ -426,7 +426,7 @@ export class ShadingTable extends Component<ShadingTableProps, {}> {
         return (
             <div className="block bg-white shadow-md px-8 pb-8 pt-6 mb-8 rounded-md">
                 <h2 className="text-2xl text-grey-700 mb-4">Shading Breakdown</h2>
-                <table>
+                <table className="breakdown">
                     <thead>
                         <tr>
                             <td></td>

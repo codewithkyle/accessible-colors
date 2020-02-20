@@ -1,11 +1,12 @@
 export function openModal(label: string = null, shades: Array<string> = null) {
     return new Promise((resolve, reject) => {
         const app = document.body.querySelector('#mounting-point') as HTMLElement;
+        app.classList.add('is-blurry');
         const container = document.createElement('new-color-modal');
 
         const backdrop = document.createElement('modal-backdrop');
         backdrop.addEventListener('click', () => {
-            app.style.filter = 'blur(0)';
+            app.classList.remove('is-blurry');
             container.remove();
             reject();
         });
@@ -17,7 +18,7 @@ export function openModal(label: string = null, shades: Array<string> = null) {
         closeButton.innerHTML =
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 61.8 61.8"><path style="fill:currentColor;" d="M61.8,6.2L55.6,0L30.9,24.7L6.2,0L0,6.2l24.7,24.7L0,55.6l6.2,6.2l24.7-24.7l24.7,24.7l6.2-6.2L37.1,30.9L61.8,6.2z"/></svg>';
         closeButton.addEventListener('click', () => {
-            app.style.filter = 'blur(0)';
+            app.classList.remove('is-blurry');
             container.remove();
             reject();
         });
@@ -103,7 +104,6 @@ export function openModal(label: string = null, shades: Array<string> = null) {
         });
         modal.appendChild(submitButton);
 
-        app.style.filter = 'blur(16px)';
         container.appendChild(backdrop);
         container.appendChild(modal);
         document.body.appendChild(container);

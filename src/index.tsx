@@ -7,6 +7,7 @@ import './buttons.scss';
 import './color-modal/new-color-modal.scss';
 import './footer.scss';
 import './export-modal/export-modal.scss';
+import './help-modal/help-modal.scss';
 
 import { ColorButton } from './color-button/color-button';
 import { openModal } from './color-modal/new-color';
@@ -15,6 +16,7 @@ import { ActiveShade } from './active-shade/active-shade';
 import { ShadingTable } from './tables/shading-breakdown';
 import { exportColors } from './export-modal/export';
 import { Color } from './types';
+import { help } from './help-modal/help-modal';
 
 type AppState = {
     colors: Array<Color>;
@@ -109,6 +111,10 @@ class Application extends Component<{}, AppState> {
         // TODO: Open a model and allow the user to provide a hyphen seperated string of hex codes
     };
 
+    private openHelpModal: EventListener = () => {
+        help();
+    };
+
     private resetColors: EventListener = () => {
         localStorage.removeItem('colors');
         this.setState({ colors: [...this.initialColors], activeColorIndex: 0 });
@@ -160,7 +166,7 @@ class Application extends Component<{}, AppState> {
                 <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
                     <h1 className="text-grey-700 text-2xl">Accessible Colors</h1>
                     <div className="flex items-center">
-                        <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
+                        <button type="default" kind="text" className="mr-2" onClick={this.openHelpModal}>
                             Help
                         </button>
                         <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>

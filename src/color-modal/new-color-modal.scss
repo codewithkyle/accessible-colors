@@ -30,6 +30,9 @@ new-color-modal{
         background-color: var(--white);
         max-height: 90vh;
         overflow-y: auto;
+        animation: modalPop 150ms forwards var(--ease);
+        transform: scale(0.87);
+        opacity: 0;
 
         button{
             cursor: pointer;

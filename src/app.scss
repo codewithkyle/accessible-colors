@@ -1,3 +1,12 @@
+#mounting-point{
+    filter: blur(0);
+    transition: all 300ms var(--ease);
+
+    &.is-blurry{
+        filter: blur(16px);
+        transition: none;
+    }
+}
 .app-shell{
     width: 100%;
     max-width: 1024px;
@@ -81,5 +90,16 @@
             color: var(--neutral-500);
             transition: all 75ms var(--ease);
         }
+    }
+}
+@keyframes modalPop
+{
+    from{
+        transform: scale(0.87);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
     }
 }
