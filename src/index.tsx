@@ -8,6 +8,7 @@ import './color-modal/new-color-modal.scss';
 import './footer.scss';
 import './export-modal/export-modal.scss';
 import './help-modal/help-modal.scss';
+import './settings-modal/settings-modal.scss';
 
 import { ColorButton } from './color-button/color-button';
 import { openModal } from './color-modal/new-color';
@@ -15,16 +16,19 @@ import { GreyscaleTable } from './tables/greyscale-breakdown';
 import { ActiveShade } from './active-shade/active-shade';
 import { ShadingTable } from './tables/shading-breakdown';
 import { exportColors } from './export-modal/export';
-import { Color } from './types';
+import { Color, Settings } from './types';
 import { help } from './help-modal/help-modal';
+import { openSettings } from './settings-modal/settings-modal';
 
 type AppState = {
     colors: Array<Color>;
     activeColorIndex: number;
+    settings: Settings;
 };
 
 class Application extends Component<{}, AppState> {
     private initialColors: Array<Color>;
+    private initalSettings: Settings;
 
     constructor() {
         super();
@@ -47,9 +51,15 @@ class Application extends Component<{}, AppState> {
             },
         ];
 
+        this.initalSettings = {
+            offWhite: '#f5f5f5',
+            offBlack: '#212121',
+        };
+
         this.state = {
             colors: [],
             activeColorIndex: 0,
+            settings: null,
         };
 
         if (location.search.length) {
@@ -63,6 +73,15 @@ class Application extends Component<{}, AppState> {
         } else {
             // @ts-ignore
             this.state.colors = this.initialColors;
+        }
+
+        const settings = localStorage.getItem('settings');
+        if (settings) {
+            // @ts-ignore
+            this.state.settings = JSON.parse(settings);
+        } else {
+            // @ts-ignore
+            this.state.settings = this.initalSettings;
         }
     }
 
@@ -95,6 +114,7 @@ class Application extends Component<{}, AppState> {
 
     componentDidUpdate() {
         localStorage.setItem('colors', JSON.stringify(this.state.colors));
+        localStorage.setItem('settings', JSON.stringify(this.state.settings));
     }
 
     private newColorClick: EventListener = () => {
@@ -107,8 +127,10 @@ class Application extends Component<{}, AppState> {
         exportColors(this.state.colors);
     };
 
-    private importClick: EventListener = () => {
-        // TODO: Open a model and allow the user to provide a hyphen seperated string of hex codes
+    private settings: EventListener = () => {
+        openSettings(this.state.settings).then((settings: Settings) => {
+            this.setState({ settings: settings });
+        });
     };
 
     private openHelpModal: EventListener = () => {
@@ -117,7 +139,8 @@ class Application extends Component<{}, AppState> {
 
     private resetColors: EventListener = () => {
         localStorage.removeItem('colors');
-        this.setState({ colors: [...this.initialColors], activeColorIndex: 0 });
+        localStorage.removeItem('settings');
+        this.setState({ colors: [...this.initialColors], activeColorIndex: 0, settings: { ...this.initalSettings } });
     };
 
     private deleteColor() {
@@ -172,9 +195,9 @@ class Application extends Component<{}, AppState> {
                         <button type="default" kind="text" className="mr-2" onClick={this.resetColors}>
                             Reset
                         </button>
-                        {/* <button type="default" kind="text" className="mr-2" onClick={this.importClick}>
-                            Import
-                        </button> */}
+                        <button type="default" kind="text" className="mr-2" onClick={this.settings}>
+                            Settings
+                        </button>
                         <button type="default" kind="text" onClick={this.exportClick}>
                             Export
                         </button>
@@ -192,7 +215,7 @@ class Application extends Component<{}, AppState> {
                         updateCallback={this.updateShade.bind(this)}
                         editCallback={this.editColor.bind(this)}
                     />
-                    <GreyscaleTable shades={this.state.colors[this.state.activeColorIndex]?.shades} />
+                    <GreyscaleTable settings={this.state.settings} shades={this.state.colors[this.state.activeColorIndex]?.shades} />
                     <ShadingTable shades={this.state.colors[this.state.activeColorIndex]?.shades} />
                 </div>
                 <footer>

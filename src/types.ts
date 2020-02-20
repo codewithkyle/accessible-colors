@@ -8,3 +8,8 @@ export type RGB = {
     g: number;
     b: number;
 };
+
+export type Settings = {
+    offWhite: string;
+    offBlack: string;
+};

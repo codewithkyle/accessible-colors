@@ -98,7 +98,7 @@ export function openModal(label: string = null, shades: Array<string> = null) {
             if (fail) {
                 return;
             }
-            app.style.filter = 'blur(0)';
+            app.classList.remove('is-blurry');
             container.remove();
             resolve(newColor);
         });

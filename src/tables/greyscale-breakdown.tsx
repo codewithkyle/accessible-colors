@@ -1,9 +1,11 @@
 import { h, Component } from 'preact';
 import { hexToRgb, contrast } from '../util/colors';
 import './table.scss';
+import { Settings } from '../types';
 
 type GreyscaleTableProps = {
     shades: Array<string> | null;
+    settings: Settings;
 };
 
 export class GreyscaleTable extends Component<GreyscaleTableProps, {}> {
@@ -12,8 +14,8 @@ export class GreyscaleTable extends Component<GreyscaleTableProps, {}> {
         const textColor = contrast(rgb, { r: 0, g: 0, b: 0 }) >= 4.5 ? '#000' : '#fff';
         const white = { r: 255, g: 255, b: 255 };
         const black = { r: 0, g: 0, b: 0 };
-        const grey100 = hexToRgb('#f5f5f5');
-        const grey900 = hexToRgb('#212121');
+        const grey100 = hexToRgb(this.props.settings.offWhite);
+        const grey900 = hexToRgb(this.props.settings.offBlack);
 
         if (index <= 1) {
             return (
@@ -228,8 +230,8 @@ export class GreyscaleTable extends Component<GreyscaleTableProps, {}> {
                         <tr>
                             <td></td>
                             <td style={{ backgroundColor: '#fff' }}>#ffffff</td>
-                            <td style={{ backgroundColor: '#f5f5f5' }}>#f5f5f5</td>
-                            <td style={{ backgroundColor: '#212121', color: '#fff' }}>#212121</td>
+                            <td style={{ backgroundColor: this.props.settings.offWhite }}>{this.props.settings.offWhite}</td>
+                            <td style={{ backgroundColor: this.props.settings.offBlack, color: '#fff' }}>{this.props.settings.offBlack}</td>
                             <td style={{ backgroundColor: '#000', color: '#fff' }}>#000000</td>
                         </tr>
                     </thead>
