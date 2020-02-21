@@ -1,39 +1,89 @@
 .color-button{
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 2rem 2rem 0;
+    padding: 0.5rem;
     vertical-align: top;
     width: 96px;
     height: 96px;
-    border-radius: 0.25rem;
-    box-shadow: var(--shadow-inner);
     cursor: pointer;
     position: relative;
-    transform: none;
-    transform-origin: center;
-    transition: border-radius 150ms var(--ease), transform 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: 2px solid transparent;
+    transition: all 150ms var(--ease);
 
-    &.is-active{
-        border-radius: 50%;
+    &.is-primary{
+        outline-color: var(--black);
 
-        span{
+        &:focus{
+            outline: 2px solid var(--black);
+        }
+
+        &:focus-visible{
+            transform: scale(1.15);
+        }
+
+        .label{
+            opacity: 1;
+        }
+
+        .tag{
+            background-color: var(--black);
+        }
+    }
+    &.is-secondary{
+        outline-color: #D100D1;
+
+        &:focus{
+            outline: 2px solid #D100D1;
+        }
+
+        &:focus-visible{
+            transform: scale(1.1);
+        }
+
+        .label{
+            opacity: 1;
+        }
+
+        .tag{
+            background-color: #D100D1;
+        }
+    }
+
+    &:focus-visible{
+        &:not(.is-primary):not(.is-secondary){
+            outline: 2px solid var(--black);   
+        }
+
+        .label{
             opacity: 1;
         }
     }
 
-    &:hover,
-    &:focus{
-        transform: scale(1.1);
+    &:hover{
+        .icon{
+            transform: scale(1.1);
+        }
 
-        span{
+        .label{
             opacity: 1;
         }
     }
 
-    &:active{
-        transform: scale(0.87);
+    .icon{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.25rem;
+        transform: none;
+        transform-origin: center;
+        transition: all 150ms var(--ease);
+        box-shadow: var(--shadow-inner);
     }
 
-    span{
+    .label{
         position: absolute;
         text-transform: capitalize;
         top: 50%;
@@ -42,5 +92,17 @@
         opacity: 0;
         padding: 0 0.5rem;
         transition: all 150ms var(--ease);
+    }
+
+    .tag{
+        position: absolute;
+        top: 100%;
+        left: -2px;
+        background-color: var(--black);
+        color: var(--white);
+        height: 18px;
+        font-size: var(--text-xs);
+        text-transform: uppercase;
+        padding: 0 0.25rem;
     }
 }

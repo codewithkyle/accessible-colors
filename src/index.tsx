@@ -23,6 +23,7 @@ import { openSettings } from './settings-modal/settings-modal';
 type AppState = {
     colors: Array<Color>;
     activeColorIndex: number;
+    secondaryColorIndex: number;
     settings: Settings;
 };
 
@@ -67,6 +68,7 @@ class Application extends Component<{}, AppState> {
         this.state = {
             colors: [],
             activeColorIndex: 0,
+            secondaryColorIndex: null,
             settings: null,
         };
 
@@ -125,7 +127,20 @@ class Application extends Component<{}, AppState> {
     }
 
     private switchActiveColor(index: number) {
-        this.setState({ activeColorIndex: index });
+        const updatedState = { ...this.state };
+        updatedState.activeColorIndex = index;
+        if (updatedState.secondaryColorIndex === index) {
+            updatedState.secondaryColorIndex = null;
+        }
+        this.setState(updatedState);
+    }
+
+    private switchSecondaryColor(index: number) {
+        const updatedState = { ...this.state };
+        if (updatedState.activeColorIndex !== index) {
+            updatedState.secondaryColorIndex = index;
+            this.setState(updatedState);
+        }
     }
 
     componentDidUpdate() {
@@ -185,7 +200,14 @@ class Application extends Component<{}, AppState> {
     }
 
     private renderColorButtons = (color: Color, index) => (
-        <ColorButton index={index} color={color} activeColorIndex={this.state.activeColorIndex} callback={this.switchActiveColor.bind(this)} />
+        <ColorButton
+            index={index}
+            color={color}
+            activeColorIndex={this.state.activeColorIndex}
+            primaryCallback={this.switchActiveColor.bind(this)}
+            secondaryCallback={this.switchSecondaryColor.bind(this)}
+            secondaryColorIndex={this.state.secondaryColorIndex}
+        />
     );
 
     render() {
