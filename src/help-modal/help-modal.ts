@@ -58,6 +58,14 @@ export function help() {
         const shadingTable = document.body.querySelector('template[tag="shading-table"]') as HTMLTemplateElement;
         modal.appendChild(shadingTable.content);
 
+        const comparison = document.createElement('h2');
+        comparison.innerHTML = 'Comparison Breakdown';
+        modal.appendChild(comparison);
+        const comparisonCopy = document.createElement('p');
+        comparisonCopy.innerHTML =
+            'You can compare all shades of two colors by selecting a primary (left-click) and a secondary (right-click) color from the color palette. This table is used for general color comparison and does not require that any specific shades meet a preset accessibility standard.';
+        modal.appendChild(comparisonCopy);
+
         container.appendChild(backdrop);
         container.appendChild(modal);
         document.body.appendChild(container);

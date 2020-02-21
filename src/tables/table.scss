@@ -4,6 +4,7 @@
 
     &.-overflow{
         overflow-x: auto;
+        box-shadow: var(--shadow-inner);
 
         td{
             width: 130px;
