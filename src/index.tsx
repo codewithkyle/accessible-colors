@@ -19,6 +19,7 @@ import { exportColors } from './export-modal/export';
 import { Color, Settings } from './types';
 import { help } from './help-modal/help-modal';
 import { openSettings } from './settings-modal/settings-modal';
+import { ComparisonTable } from './tables/two-color-breakdown';
 
 type AppState = {
     colors: Array<Color>;
@@ -182,6 +183,7 @@ class Application extends Component<{}, AppState> {
         const updatedState = { ...this.state };
         updatedState.colors.splice(updatedState.activeColorIndex, 1);
         updatedState.activeColorIndex = 0;
+        updatedState.secondaryColorIndex = null;
         this.setState(updatedState);
     }
 
@@ -259,6 +261,10 @@ class Application extends Component<{}, AppState> {
                     />
                     <GreyscaleTable settings={this.state.settings} shades={this.state.colors[this.state.activeColorIndex]?.shades} />
                     <ShadingTable shades={this.state.colors[this.state.activeColorIndex]?.shades} />
+                    <ComparisonTable
+                        primaryShades={this.state.colors[this.state.activeColorIndex]?.shades}
+                        secondaryShades={this.state.colors[this.state.secondaryColorIndex]?.shades}
+                    />
                 </div>
                 <footer>
                     <span>

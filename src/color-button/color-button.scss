@@ -10,7 +10,6 @@
     cursor: pointer;
     position: relative;
     outline: 2px solid transparent;
-    transition: all 150ms var(--ease);
 
     &.is-primary{
         outline-color: var(--black);

@@ -2,6 +2,27 @@
     width: 100%;
     display: block;
 
+    &.-overflow{
+        overflow-x: auto;
+
+        td{
+            width: 130px;
+            flex: none;
+        }
+    }
+
+    &.tooltip-visible{
+        tbody{
+            tr{
+                td{
+                    .tooltip{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
     thead{
         display: block;
         width: 100%;
