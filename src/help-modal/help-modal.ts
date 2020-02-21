@@ -28,7 +28,7 @@ export function help() {
         heading.innerHTML = 'General';
         modal.appendChild(heading);
         const desc = document.createElement('p');
-        desc.innerHTML = `This app is designed to assist in the creation of a systematically accessible color palette and does not generate shades/color palettes for you. Colors contain 9 shades arranged from lightest (100) to darkest (900) and only the first and last 3 shades must follow the accessibility system.`;
+        desc.innerHTML = `This app is designed to assist in the creation of a systematically accessible color palette and does not generate shades or colors for you. A color is made up of 9 shades that are from lightest (100) to darkest (900).`;
         modal.appendChild(desc);
 
         const grayscale = document.createElement('h2');
@@ -36,7 +36,7 @@ export function help() {
         modal.appendChild(grayscale);
         const grayscaleCopy = document.createElement('p');
         grayscaleCopy.innerHTML =
-            'The grayscale breakdown requires that a colors first and last 2 shades pass the AAA (7:1) contrast ratio and the 3rd and 6th shade passes the AA (4.5:1) contrast ratio.';
+            'The grayscale breakdown requires that a colors first and last 2 shades pass the AAA (7:1) contrast ratio and the 3rd & 6th shades passe the AA (4.5:1) contrast ratio.';
         modal.appendChild(grayscaleCopy);
 
         const shading = document.createElement('h2');
@@ -44,7 +44,7 @@ export function help() {
         modal.appendChild(shading);
         const shadingCopy = document.createElement('p');
         shadingCopy.innerHTML =
-            'The shading breakdown requires that the first and last 3 shades must be accessible with each other. Refer to the table below for the required contrast ratios.';
+            'The shading breakdown requires that the first 3 and last 3 shades must be accessible with each other. Refer to the table below for the contrast ratios.';
         modal.appendChild(shadingCopy);
 
         const shadingTable = document.body.querySelector('template[tag="shading-table"]') as HTMLTemplateElement;
