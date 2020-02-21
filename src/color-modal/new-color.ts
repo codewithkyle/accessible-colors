@@ -4,6 +4,14 @@ export function openModal(label: string = null, shades: Array<string> = null) {
         app.classList.add('is-blurry');
         const container = document.createElement('new-color-modal');
 
+        document.body.addEventListener('keyup', (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === 'escape') {
+                app.classList.remove('is-blurry');
+                container.remove();
+                reject();
+            }
+        });
+
         const backdrop = document.createElement('modal-backdrop');
         backdrop.addEventListener('click', () => {
             app.classList.remove('is-blurry');

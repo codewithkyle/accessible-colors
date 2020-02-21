@@ -2,6 +2,14 @@ import { Settings } from '../types';
 
 export function openSettings(settings: Settings) {
     return new Promise((resolve, reject) => {
+        document.body.addEventListener('keyup', (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === 'escape') {
+                app.classList.remove('is-blurry');
+                container.remove();
+                reject();
+            }
+        });
+
         const app = document.body.querySelector('#mounting-point') as HTMLElement;
         app.classList.add('is-blurry');
         const container = document.createElement('settings-modal');

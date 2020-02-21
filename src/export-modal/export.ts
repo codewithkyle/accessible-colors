@@ -6,6 +6,15 @@ export function exportColors(colors: Array<Color>, settings: Settings) {
             resolve();
             return;
         }
+
+        document.body.addEventListener('keyup', (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === 'escape') {
+                app.classList.remove('is-blurry');
+                container.remove();
+                resolve();
+            }
+        });
+
         const app = document.body.querySelector('#mounting-point') as HTMLElement;
         app.classList.add('is-blurry');
         const container = document.createElement('export-modal');

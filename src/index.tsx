@@ -43,7 +43,7 @@ class Application extends Component<{}, AppState> {
             },
             {
                 label: 'warning',
-                shades: ['#FFFBEA', '#FEFCBF', '#FAF089', '#F6E05E', '#ECC94B', '#D69E2E', '#B7791F', '#975A16', '#744210'],
+                shades: ['#FFFBEA', '#fefacc', '#FAF089', '#F6E05E', '#ECC94B', '#D69E2E', '#B7791F', '#975A16', '#744210'],
             },
             {
                 label: 'danger',
@@ -134,9 +134,11 @@ class Application extends Component<{}, AppState> {
     }
 
     private newColorClick: EventListener = () => {
-        openModal().then((newColor: Color) => {
-            this.setState({ colors: [...this.state.colors, newColor] });
-        });
+        openModal()
+            .then((newColor: Color) => {
+                this.setState({ colors: [...this.state.colors, newColor] });
+            })
+            .catch(() => {});
     };
 
     private exportClick: EventListener = () => {
@@ -144,9 +146,11 @@ class Application extends Component<{}, AppState> {
     };
 
     private settings: EventListener = () => {
-        openSettings(this.state.settings).then((settings: Settings) => {
-            this.setState({ settings: settings });
-        });
+        openSettings(this.state.settings)
+            .then((settings: Settings) => {
+                this.setState({ settings: settings });
+            })
+            .catch(() => {});
     };
 
     private openHelpModal: EventListener = () => {
