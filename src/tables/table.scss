@@ -2,6 +2,15 @@
     width: 100%;
     display: block;
 
+    @media (max-width: 1024px){
+        overflow-x: auto;
+        box-shadow: var(--shadow-inner);
+
+        td{
+            min-width: 130px !important;
+        }
+    }
+
     &.-overflow{
         overflow-x: auto;
         box-shadow: var(--shadow-inner);
