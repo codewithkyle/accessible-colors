@@ -1,7 +1,8 @@
 let deferredInstallPrompt = null;
+const isAndroid = /(android)/i.test(navigator.userAgent);
 window.addEventListener('beforeinstallprompt', e => {
     deferredInstallPrompt = e;
-    if (!sessionStorage.getItem('prompt')) {
+    if (!sessionStorage.getItem('prompt') && !isAndroid) {
         setTimeout(() => {
             installPrompt.classList.add('is-visible');
         }, 1000);
