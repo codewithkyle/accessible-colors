@@ -1,4 +1,16 @@
 .active-shade{
+    .head{
+        flex-flow: column wrap;
+        justify-content: center;
+        text-align: center;
+
+        @media (min-width: 600px){
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            text-align: left;
+        }
+    }
+
     h2{
         text-transform: capitalize;
     }
@@ -6,18 +18,28 @@
     .shades-wrapper{
         width: 100%;
         display: block;
+        text-align: center;
+
+        @media (min-width: 600px){
+            text-align: left;
+        }
 
         .shade-button{
-            display: inline-block;
+            display: block;
             width: 48px;
             height: 48px;
             cursor: pointer;
             position: relative;
             transform: none;
             transform-origin: center;
-            margin-right: 1rem;
+            margin: 0 auto 1rem;
             border: none;
             outline: none;
+
+            @media (min-width: 320px){
+                display: inline-block;
+                margin: 0.5rem;
+            }
 
             &:hover{
                 label{

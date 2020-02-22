@@ -40,7 +40,7 @@ export class ActiveShade extends Component<ActiveShadeProps, {}> {
         return (
             <div className="block bg-white shadow-md px-8 pt-6 pb-8 mb-8 rounded-md">
                 <div className="active-shade">
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="head flex items-center mb-4">
                         <h2 className="text-2xl text-grey-700">{this.props.name}</h2>
                         <div>
                             <button className="mr-2" type="default" kind="text" onClick={this.editColor}>

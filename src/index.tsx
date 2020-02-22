@@ -230,7 +230,7 @@ class Application extends Component<{}, AppState> {
         );
         return (
             <Fragment>
-                <header className="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+                <header className="flex items-center px-8 py-4 bg-white shadow-md">
                     <h1 className="text-grey-700 text-2xl">Accessible Colors</h1>
                     <div className="flex items-center">
                         <button type="default" kind="text" className="mr-2" onClick={this.openHelpModal}>
