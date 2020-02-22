@@ -12,6 +12,8 @@ const installPrompt = document.body.querySelector('install-banner');
 const installButton = document.body.querySelector('install-banner #install');
 installButton.addEventListener('click', e => {
     deferredInstallPrompt.prompt();
+    sessionStorage.setItem('prompt', 'true');
+    installPrompt.classList.remove('is-visible');
     deferredInstallPrompt.userChoice.then(() => {
         deferredInstallPrompt = null;
     });
