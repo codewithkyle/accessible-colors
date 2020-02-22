@@ -9,12 +9,131 @@
     <link rel="icon" type="image/png" href="images/favicon-16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="images/favicon-32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="images/favicon-96.png" sizes="96x96">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#EDF2F7" />
     
     <script defer src="assets/app.js"></script>
+    <script defer src="install.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((reg) => {})
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            });
+        }
+    </script>
+
+    <style>
+        install-banner{
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1.5rem 2rem;
+            border-radius: 0.25rem;
+            box-shadow: var(--shadow-md);
+            background-color: var(--grey-800);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(1rem) scale(0.87);
+            transition: all 150ms var(--ease), transform 0ms 150ms linear;
+        }
+        install-banner.is-visible{
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            transition: all 150ms var(--ease-in);
+        }
+        install-banner p{
+            font-size: var(--text-lg);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        install-actions{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-flow: row nowrap;
+        }
+        #install-close{
+            color: var(--grey-400);
+            height: 36px;
+            line-height: 36px;
+            margin-right: 1rem;
+            padding: 0 1rem;
+            font-weight: var(--font-semibold);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            position: relative;
+        }
+        #install-close:before{
+            content:"";
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            opacity: 0.06;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(0);
+            transition: all 150ms var(--ease-bounce);
+        }
+        #install-close:hover:before{
+            transform: scale(1);
+        }
+        #install-close:active:before{
+            transform: scale(1.15);
+            opacity: 0.1;
+        }
+        #install-close:focus-visible{
+            outline: 2px solid var(--white);
+        }
+        #install{
+            padding: 0 1rem;
+            height: 36px;
+            line-height: 36px;
+            background-color: var(--white);
+            border-radius: 17px;
+            color: var(--grey-900);
+            font-weight: var(--font-semibold);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 150ms var(--ease);
+        }
+        #install:hover{
+            opacity: 0.87;
+        }
+        #install:active{
+            opacity: 0.6;
+        }
+        #install:focus-visible{
+            outline: 2px solid var(--white);
+        }
+
+        @media all and (display-mode: standalone) {
+            install-banner{
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="mounting-point"></div>
     <noscript>This application requires javascript.</noscript>
+    <install-banner>
+        <p>Get access to this app anytime, anywhere.</p>
+        <install-actions>
+            <button id="install-close">
+                not now
+            </button>
+            <button id="install">Install</button>
+        </install-actions>
+    </install-banner>
     <template tag="shading-table">
         <table>
             <tbody>
