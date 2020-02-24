@@ -45,12 +45,14 @@ export class ComparisonTable extends Component<ComparisonTableProps, {}> {
     };
 
     render() {
-        if (!this.props.primaryShades || !this.props.secondaryShades) {
+        if (!this.props.primaryShades) {
             return null;
         }
-        return (
-            <div className="block bg-white shadow-md px-8 pb-8 pt-6 mb-8 rounded-md">
-                <h2 className="text-2xl text-grey-700 mb-4">Comparison Breakdown</h2>
+        let content = null;
+        if (!this.props.secondaryShades) {
+            content = <p>Right-click or press and hold a second color to enable the comparison accessibility breakdown.</p>;
+        } else {
+            content = (
                 <table className="breakdown -overflow tooltip-visible">
                     <thead>
                         <tr>
@@ -60,6 +62,13 @@ export class ComparisonTable extends Component<ComparisonTableProps, {}> {
                     </thead>
                     <tbody>{this.props.primaryShades.map(shade => this.buildShadingRow(shade))}</tbody>
                 </table>
+            );
+        }
+
+        return (
+            <div className="block bg-white shadow-md px-8 pb-8 pt-6 mb-8 rounded-md">
+                <h2 className="text-2xl text-grey-700 mb-4">Comparison Breakdown</h2>
+                {content}
             </div>
         );
     }

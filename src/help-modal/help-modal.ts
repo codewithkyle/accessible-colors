@@ -71,7 +71,7 @@ export function help() {
         modal.appendChild(attribution);
         const attributionCopy = document.createElement('p');
         attributionCopy.innerHTML =
-            'Initial color palette are based upon the <a href="https://github.com/tailwindcss/tailwindcss/blob/master/LICENSE">tailwindcss</a> presets. Inspiration and design based upon <a href="https://webaim.org/resources/contrastchecker/">WebAIM</a> and <a href="https://contrast-grid.eightshapes.com/">Contrast Grid</a>.';
+            'The initial color palette is based upon the <a href="https://github.com/tailwindcss/tailwindcss/blob/master/LICENSE">tailwindcss</a> presets. Inspiration and design based upon <a href="https://webaim.org/resources/contrastchecker/">WebAIM</a> and <a href="https://contrast-grid.eightshapes.com/">Contrast Grid</a>.';
         modal.appendChild(attributionCopy);
 
         container.appendChild(backdrop);
