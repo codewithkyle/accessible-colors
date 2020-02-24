@@ -66,6 +66,14 @@ export function help() {
             'You can compare all shades of two colors by selecting a primary (left-click) and a secondary (right-click) color from the color palette. This table is used for general color comparison and does not require that any specific shades meet a preset accessibility standard.';
         modal.appendChild(comparisonCopy);
 
+        const attribution = document.createElement('h2');
+        attribution.innerHTML = 'Attribution';
+        modal.appendChild(attribution);
+        const attributionCopy = document.createElement('p');
+        attributionCopy.innerHTML =
+            'Initial color palette are based upon the <a href="https://github.com/tailwindcss/tailwindcss/blob/master/LICENSE">tailwindcss</a> presets. Inspiration and design based upon <a href="https://webaim.org/resources/contrastchecker/">WebAIM</a> and <a href="https://contrast-grid.eightshapes.com/">Contrast Grid</a>.';
+        modal.appendChild(attributionCopy);
+
         container.appendChild(backdrop);
         container.appendChild(modal);
         document.body.appendChild(container);

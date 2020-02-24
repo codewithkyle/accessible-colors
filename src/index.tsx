@@ -9,6 +9,7 @@ import './footer.scss';
 import './export-modal/export-modal.scss';
 import './help-modal/help-modal.scss';
 import './settings-modal/settings-modal.scss';
+import './modal.scss';
 
 import { ColorButton } from './color-button/color-button';
 import { openModal } from './color-modal/new-color';
@@ -20,6 +21,7 @@ import { Color, Settings } from './types';
 import { help } from './help-modal/help-modal';
 import { openSettings } from './settings-modal/settings-modal';
 import { ComparisonTable } from './tables/two-color-breakdown';
+import { importColors } from './import-modal/import-modal';
 
 type AppState = {
     colors: Array<Color>;
@@ -74,7 +76,7 @@ class Application extends Component<{}, AppState> {
         };
 
         if (location.search.length) {
-            const urlParams = this.parseURL();
+            const urlParams = this.parseURL(location.href);
             // @ts-ignore
             this.state.colors = urlParams.colors;
             // @ts-ignore
@@ -100,9 +102,9 @@ class Application extends Component<{}, AppState> {
         }
     }
 
-    private parseURL() {
+    private parseURL(href) {
         const colors: Array<Color> = [];
-        const url = new URL(location.href);
+        const url = new URL(href);
         const settings: Settings = {
             offWhite: `#${url.searchParams.get('off-white')}`,
             offBlack: `#${url.searchParams.get('off-black')}`,
@@ -171,6 +173,20 @@ class Application extends Component<{}, AppState> {
 
     private openHelpModal: EventListener = () => {
         help();
+    };
+
+    private importClick: EventListener = () => {
+        importColors()
+            .then(href => {
+                const urlParams = this.parseURL(href);
+                const updatedState = { ...this.state };
+                updatedState.colors = urlParams.colors;
+                updatedState.settings = urlParams.settings;
+                updatedState.secondaryColorIndex = null;
+                updatedState.activeColorIndex = 0;
+                this.setState(updatedState);
+            })
+            .catch(() => {});
     };
 
     private resetColors: EventListener = () => {
@@ -242,6 +258,9 @@ class Application extends Component<{}, AppState> {
                         <button type="default" kind="text" className="mr-2" onClick={this.settings}>
                             Settings
                         </button>
+                        <button type="default" kind="text" onClick={this.importClick}>
+                            Import
+                        </button>
                         <button type="default" kind="text" onClick={this.exportClick}>
                             Export
                         </button>
@@ -277,6 +296,7 @@ class Application extends Component<{}, AppState> {
                         </svg>
                         by
                         <a href="https://kyleandrews.dev/">Kyle Andrews</a>
+                        &copy; 2020
                     </span>
                 </footer>
             </Fragment>
