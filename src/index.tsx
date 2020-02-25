@@ -122,7 +122,7 @@ class Application extends Component<{}, AppState> {
         }
         for (let p = 0; p < colorParams.length; p++) {
             if (colorParams[p].length) {
-                const vars = colorParams[p].replace('|', '-').split('-');
+                const vars = colorParams[p].replace(/\|/g, '-').split('-');
                 const newColor: Color = {
                     label: vars[0],
                     shades: [],
