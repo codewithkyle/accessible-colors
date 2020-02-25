@@ -1,5 +1,5 @@
 const offlineCacheFiles = ['/', '/index.html', '/assets/app.js'];
-const offlineCache = 'v2';
+const offlineCache = 'v3';
 
 self.addEventListener('install', evt => {
     evt.waitUntil(
