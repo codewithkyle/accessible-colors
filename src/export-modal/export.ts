@@ -55,9 +55,9 @@ export function exportColors(colors: Array<Color>, settings: Settings) {
         urlLabel.htmlFor = urlInput.id;
         urlLabel.innerHTML = 'Permalink';
         for (let i = 0; i < colors.length; i++) {
-            urlInput.value += `${i !== 0 ? '&' : ''}color=${colors[i].label}|`;
+            urlInput.value += `${i !== 0 ? '&' : ''}color=${colors[i].label}-`;
             for (let s = 0; s < colors[i].shades.length; s++) {
-                urlInput.value += `${colors[i].shades[s].replace('#', '')}${s !== colors[i].shades.length - 1 ? '|' : ''}`;
+                urlInput.value += `${colors[i].shades[s].replace('#', '')}${s < colors[i].shades.length - 1 ? '-' : ''}`;
             }
         }
         urlInput.value += `&off-white=${settings.offWhite.replace('#', '').trim()}`;

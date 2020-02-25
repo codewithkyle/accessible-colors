@@ -77,13 +77,20 @@ class Application extends Component<{}, AppState> {
 
         if (location.search.length) {
             const urlParams = this.parseURL(location.href);
+            window.history.replaceState(null, document.title, location.origin);
+            if (!urlParams) {
+                // @ts-ignore
+                this.state.colors = this.initialColors;
+                // @ts-ignore
+                this.state.settings = this.initalSettings;
+                return;
+            }
             // @ts-ignore
             this.state.colors = urlParams.colors;
             // @ts-ignore
             this.state.settings = urlParams.settings;
             localStorage.setItem('colors', JSON.stringify(this.state.colors));
             localStorage.setItem('settings', JSON.stringify(this.state.settings));
-            window.history.replaceState(null, document.title, location.origin);
         } else {
             if (localStorage.getItem('colors')) {
                 // @ts-ignore
@@ -110,9 +117,12 @@ class Application extends Component<{}, AppState> {
             offBlack: `#${url.searchParams.get('off-black')}`,
         };
         const colorParams = url.searchParams.getAll('color');
+        if (colorParams.length === 0) {
+            return null;
+        }
         for (let p = 0; p < colorParams.length; p++) {
             if (colorParams[p].length) {
-                const vars = colorParams[p].split('|');
+                const vars = colorParams[p].replace('|', '-').split('-');
                 const newColor: Color = {
                     label: vars[0],
                     shades: [],
