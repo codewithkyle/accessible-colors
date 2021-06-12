@@ -6,7 +6,8 @@
         "build": "run-p watch:*",
         "start": "run-p watch:*",
         "production": "cross-env NODE_ENV=production webpack",
-        "deploy": "node ./deploy.js"
+        "deploy": "node ./deploy.js",
+        "wrangle": "asset-manager"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^2.3.0",
@@ -37,6 +38,7 @@
         "webpack-cli": "^3.3.12"
     },
     "dependencies": {
+        "@codewithkyle/asset-manager": "^1.0.1",
         "preact": "^10.5.5",
         "tailwindcss": "^1.9.5"
     }

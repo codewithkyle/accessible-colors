@@ -21,6 +21,9 @@ jobs:
             - name: Build
               run: npm run production
 
+            - name: Cachebust
+              run: npm run wrangle
+
             - name: Deploy
               run: npm run deploy
               env:
