@@ -55,8 +55,9 @@ export function help() {
             'The shading breakdown requires that the first 3 and last 3 shades must be accessible with each other. Refer to the table below for the contrast ratios.';
         modal.appendChild(shadingCopy);
 
-        const shadingTable = document.body.querySelector('template[tag="shading-table"]') as HTMLTemplateElement;
-        modal.appendChild(shadingTable.content);
+        const shadingTable = document.body.querySelector('[tag="shading-table"]').cloneNode(true) as HTMLElement;
+        shadingTable.style.display = "block";
+        modal.appendChild(shadingTable);
 
         const comparison = document.createElement('h2');
         comparison.innerHTML = 'Comparison Breakdown';
